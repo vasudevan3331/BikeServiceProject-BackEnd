@@ -10,21 +10,21 @@ import java.util.List;
 public class BikeDetailService {
     @Autowired
     BikeDetailsRepositary repo;
-    public BikeDetails create(BikeDetails bick){
+    public BikeDetails create(BikeDetails bike){
 
-        return repo.save(bick);
+        return repo.save(bike);
     }
-    public String erasing(int ID)
+    public String erasing(int ID)//for delete
     {
       BikeDetails temp=repo.findById(ID).orElse(new BikeDetails());
       repo.delete(temp);
       return temp.getCusName() + " has been deleted";
     }
-    public java.util.List<BikeDetails> listall()
+    public List<BikeDetails> listall()
     {
         return (List<BikeDetails>) repo.findAll();
     }
-    public BikeDetails get( int cusID)
+    public BikeDetails getone( int cusID)
     {
         return repo.findById(cusID).orElse(new BikeDetails());
     }

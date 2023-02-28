@@ -1,10 +1,8 @@
 package BikeModules.BikeServiceProject;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.annotation.Nullable;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,17 +14,21 @@ import java.util.Date;
 @Data
 @Entity
 public class serviceDetails {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  int bikeJobcardno;
     private String[]bikeIssues;
     @JsonFormat(pattern = "yyyy-mm-dd")
-    private Date bikeDateService;
+    private Date bikeDateofservice;
     private String bikeKilometer;
     private String bikeStatus;
-    private String bikeServiceType;
-    private int estmatedCharge;
-    private int newProductCost;
-    private int bikelabourCost;
+    private String bikeServicetype;
+    private int bikeEstmatedcharge;
+    private int bikeNewproductcost;
+    private int bikeLabourcost;
     private int bikeFinalpay;
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "BikeCustomerID")
+    @Nullable
+    private BikeDetails bikeDetails1;
 
 }
